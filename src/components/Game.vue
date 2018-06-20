@@ -13,7 +13,6 @@
 
 <script>
 
-// import deck from './components/Deck'
 import Dealer from './Dealer'
 import Player from './Player'
 
@@ -44,13 +43,13 @@ export default {
       if (this.showButtons) {
         return ''
       }
-      if (this.playersResult > this.dealersResult) {
+      if (this.playersResult > this.dealersResult || this.dealersResult === 'Bust') {
         return 'You Win'
-      } else if (this.playersResult === this.dealersResult) {
-        return 'Draw'
-      } else {
+      }
+      if (this.playersResult < this.dealersResult || this.playersResult === 'Bust') {
         return 'You Lose'
       }
+      return 'Draw'
     }
   }
 }

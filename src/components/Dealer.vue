@@ -1,7 +1,7 @@
 <template>
   <div class="dealer">
     <div class="flex">
-      <card v-for="(card, index) in hands" :key="index" :suit="card.suit" :number="card.number" :show="card.show"></card>
+      <card v-for="(card, index) in hand" :key="index" :suit="card.suit" :number="card.number" :hide="card.hide"></card>
     </div>
   </div>
 </template>
@@ -17,24 +17,24 @@ export default {
   components: { Card },
   data () {
     return {
-      hands: []
+      hand: []
     }
   },
   created: function () {
-    this.hands.push(pick());
-    this.hands.push(pick());
+    this.hand.push(pick());
+    this.hand.push(pick());
 
-    this.hands[0].show = false;
+    this.hand[0].hide = true;
 
     this.$on('postexec', this.postexec)
   },
   methods: {
     postexec (playerBust) {
-      this.hands[0].show = true;
-      while (!playerBust && calc(this.hands) < 17) {
-        this.hands.push(pick())
+      this.hand[0].hide = false;
+      while (!playerBust && calc(this.hand) < 17) {
+        this.hand.push(pick())
       }
-      this.$emit('result', calc(this.hands))
+      this.$emit('result', calc(this.hand))
     }
   }
 }

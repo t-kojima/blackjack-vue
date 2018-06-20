@@ -1,15 +1,22 @@
 <template>
   <div class="card">
-    <img src="image" alt=""> [ {{ suit }} / {{ number }} / {{ show }}]
+    <img :src="image" alt="">
   </div>
 </template>
 
 <script>
 export default {
   name: 'card',
-  props: ['number', 'suit', 'show'],
-  data () {
-    return {
+  props: {
+    number: Number,
+    suit: String,
+    hide: Boolean,
+  },
+  computed: {
+    image: function () {
+      const filename = this.hide ? 'back' : `${this.suit}_${this.number.toString().padStart(2, "0")}`
+      // return require(`../assets/card_${filename}.png`)
+      return require('../assets/logo.png')
     }
   }
 }
