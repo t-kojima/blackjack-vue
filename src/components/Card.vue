@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img :src="image" alt="">
+    <img :src="image" height="280">
   </div>
 </template>
 
@@ -15,8 +15,7 @@ export default {
   computed: {
     image: function () {
       const filename = this.hide ? 'back' : `${this.suit}_${this.number.toString().padStart(2, "0")}`
-      // return require(`../assets/card_${filename}.png`)
-      return require('../assets/logo.png')
+      return require(`../assets/card_${filename}.png`)
     }
   }
 }
