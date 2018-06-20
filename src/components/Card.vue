@@ -10,7 +10,6 @@ export default {
   props: ['number', 'suit', 'show'],
   data () {
     return {
-
     }
   }
 }

@@ -3,7 +3,7 @@
     <div class="flex">
       <card v-for="(card, index) in hands" :key="index" :suit="card.suit" :number="card.number" :show="card.show"></card>
     </div>
-    <div class="flex">
+    <div class="flex" v-show="showButtons">
       <button @click="hit">Hit</button>
       <button @click="stand">Stand</button>
     </div>
@@ -20,24 +20,32 @@ import Card from './Card'
 export default {
   name: 'player',
   components: { Card },
+  props: ['showButtons'],
   data () {
     return {
-      hands: []
+      hands: [],
+      result: 0,
     }
   },
   created: function () {
     this.hands.push(pick());
     this.hands.push(pick());
+    this.result = calc(this.hands);
   },
   methods: {
     hit () {
       this.hands.push(pick());
-      if (calc(this.hands) === 'Bust') {
-        console.log('Bust')
-      }
+      this.result = calc(this.hands);
     },
     stand () {
-      console.log(calc(this.hands));
+      this.$emit('stand', this.result)
+    }
+  },
+  watch: {
+    result: function (newValue, oldValue) {
+      if (newValue === 'Bust') {
+        this.$emit('stand', newValue)
+      }
     }
   }
 }
