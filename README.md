@@ -1,11 +1,11 @@
 # blackjack-vue
 
-> A Vue.js project
+This sample is the practice of vue.js.
 
-## Setup
+## Demo
 
-```bash
-yarn init
-yarn add --dev vue-cli
-yarn vue init webpack-simple .
-```
+[https://t-kojima.github.io/blackjack-vue/](https://t-kojima.github.io/blackjack-vue/)
+
+## License
+
+MIT License.
