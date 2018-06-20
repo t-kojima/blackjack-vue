@@ -59,8 +59,12 @@ export default {
 
 button {
   font-size: 1.5rem;
+  font-weight: bold;
   width: 100px;
   height: 48px;
   margin: 1rem;
+  color: white;
+  background: #42b983;
+  border-radius: 10px;
 }
 </style>

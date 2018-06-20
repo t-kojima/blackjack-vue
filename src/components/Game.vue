@@ -1,13 +1,13 @@
 <template>
   <div class="game">
     <dealer ref="dealer" @result="postexec" />
-    <span>
+    <div class="message">
       {{ mainMessage }}
-    </span>
+    </div>
     <player @stand="stand" :showButtons="showButtons" />
-    <span>
+    <div class="message result">
       {{ resultMessage }}
-    </span>
+    </div>
   </div>
 </template>
 
@@ -46,12 +46,33 @@ export default {
       }
       if (this.playersResult > this.dealersResult) {
         return 'You Win'
-      } else if (this.playersResult < this.dealersResult) {
-        return 'You Lose'
-      } else {
+      } else if (this.playersResult === this.dealersResult) {
         return 'Draw'
+      } else {
+        return 'You Lose'
       }
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+}
+
+.message {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 2rem;
+}
+
+.result {
+  font-size: 3rem;
+  color: orangered;
+}
+</style>
