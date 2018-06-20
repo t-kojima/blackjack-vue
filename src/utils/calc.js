@@ -1,5 +1,5 @@
-export default hands => {
-  const points = hands.map(card => (card.number > 10 ? 10 : card.number))
+export default hand => {
+  const points = hand.map(card => (card.number > 10 ? 10 : card.number))
   const sum = points.reduce((ret, cur) => ret + cur)
 
   if (sum > 21) {

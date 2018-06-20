@@ -1,14 +1,13 @@
 <template>
   <div class="player">
     <div class="flex">
-      <card v-for="(card, index) in hands" :key="index" :suit="card.suit" :number="card.number" :show="card.show"></card>
+      <card v-for="(card, index) in hand" :key="index" :suit="card.suit" :number="card.number" :hide="card.hide"></card>
     </div>
     <div class="flex" v-show="showButtons">
       <button @click="hit">Hit</button>
       <button @click="stand">Stand</button>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -23,19 +22,19 @@ export default {
   props: ['showButtons'],
   data () {
     return {
-      hands: [],
+      hand: [],
       result: 0,
     }
   },
   created: function () {
-    this.hands.push(pick());
-    this.hands.push(pick());
-    this.result = calc(this.hands);
+    this.hand.push(pick());
+    this.hand.push(pick());
+    this.result = calc(this.hand);
   },
   methods: {
     hit () {
-      this.hands.push(pick());
-      this.result = calc(this.hands);
+      this.hand.push(pick());
+      this.result = calc(this.hand);
     },
     stand () {
       this.$emit('stand', this.result)
@@ -59,8 +58,12 @@ export default {
 
 button {
   font-size: 1.5rem;
+  font-weight: bold;
   width: 100px;
   height: 48px;
   margin: 1rem;
+  color: white;
+  background: #42b983;
+  border-radius: 10px;
 }
 </style>

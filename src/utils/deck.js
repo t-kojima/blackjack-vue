@@ -1,7 +1,7 @@
 const deck = []
 ;['spade', 'club', 'diamond', 'heart'].forEach(suit => {
   Array.from(Array(13), (_, i) => ++i).forEach(number => {
-    deck.push({ suit, number, show: true })
+    deck.push({ suit, number, hide: false })
   })
 })
 

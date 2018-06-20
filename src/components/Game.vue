@@ -1,19 +1,18 @@
 <template>
   <div class="game">
     <dealer ref="dealer" @result="postexec" />
-    <span>
+    <div class="message">
       {{ mainMessage }}
-    </span>
+    </div>
     <player @stand="stand" :showButtons="showButtons" />
-    <span>
+    <div class="message result">
       {{ resultMessage }}
-    </span>
+    </div>
   </div>
 </template>
 
 <script>
 
-// import deck from './components/Deck'
 import Dealer from './Dealer'
 import Player from './Player'
 
@@ -44,14 +43,35 @@ export default {
       if (this.showButtons) {
         return ''
       }
-      if (this.playersResult > this.dealersResult) {
+      if (this.playersResult > this.dealersResult || this.dealersResult === 'Bust') {
         return 'You Win'
-      } else if (this.playersResult < this.dealersResult) {
-        return 'You Lose'
-      } else {
-        return 'Draw'
       }
+      if (this.playersResult < this.dealersResult || this.playersResult === 'Bust') {
+        return 'You Lose'
+      }
+      return 'Draw'
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+}
+
+.message {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 2rem;
+}
+
+.result {
+  font-size: 3rem;
+  color: orangered;
+}
+</style>
