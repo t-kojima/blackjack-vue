@@ -6,7 +6,7 @@ export default hand => {
     return 'Bust'
   }
   // 合計が11以下で1(A)を含むなら+10する
-  if (sum < 11 && points.some(a => a === 1)) {
+  if (sum <= 11 && points.some(a => a === 1)) {
     return sum + 10
   }
   return sum
